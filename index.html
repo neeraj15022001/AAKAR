@@ -373,7 +373,23 @@
       "
     ></div>
     <!-- Carousel Cards -->
-    <div class="h-80 w-screen"></div>
+    <div class="h-80 w-screen">
+      <div class="relative h-full left-1\/2 w-screen">
+        <div class="bg-black h-72 rounded-t-3xl w-60 absolute left-1/2 transform -translate-x-1/2 -translate-y-24 border-0 shadow-2xl">
+          <div class="h-3/4 bg-white w-full rounded-t-3xl border-0"></div>
+          <div class="h-1/4 bg-gray-300 w-full border-0 capitalize font-bold text-lg flex items-center justify-center">blah blah</div>
+        </div>
+        <div class="bg-black h-72 rounded-t-3xl w-60 absolute right-1 transform -translate-y-24 border-0 shadow-2xl scale-75">
+          <div class="h-3/4 bg-white w-full rounded-t-3xl border-0"></div>
+          <div class="h-1/4 bg-gray-300 w-full border-0 capitalize font-bold text-lg flex items-center justify-center">blah blah</div>
+        </div>
+        <div class="bg-black h-72 rounded-t-3xl w-60 absolute left-1 transform  -translate-y-24 border-0 shadow-2xl scale-75">
+          <div class="h-3/4 bg-white w-full rounded-t-3xl border-0"></div>
+          <div class="h-1/4 bg-gray-300 w-full border-0 capitalize font-bold text-lg flex items-center justify-center">blah blah</div>
+        </div>
+      </div>
+      </div>
+    </div>
     <!-- Top Categories -->
     <div class="bg-blue-200 overflow-hidden w-screen">
       <div class="p-10">
@@ -420,12 +436,9 @@
       <div class="pt-5 pb-10 px-10">
         <p class="uppercase font-extrabold text-lg mb-8">top cities</p>
         <div class="flex items-center justify-between">
-          <div
-            class="w-80 h-36 bg-red-800 bg-cover bg-center rounded-sm bg-no-repeat"
-            style="
-              background-image: url('https://image.freepik.com/free-photo/birla-mandir-kolkata_78361-2681.jpg');
-            "
-          ></div>
+          <div class="w-80 h-36 bg-red-800 bg-cover bg-center rounded-sm bg-no-repeat filter brightness-50 p-5 flex items-end justify-center" style="background-image: url('https://image.freepik.com/free-photo/birla-mandir-kolkata_78361-2681.jpg');">
+            <span class="uppercase font-bold tracking-wide text-white">kolkata</span>
+          </div>
           <div class="flex items-center justify-center">
             <p class="uppercase text-purple-600 font-bold mr-1">know more</p>
             <i class="bi bi-chevron-right"></i>
