@@ -16,6 +16,7 @@
     <title>Assignment 1</title>
   </head>
   <body>
+    <header>
     <!-- Top Bar -->
     <div class="flex items-center justify-between">
       <div
@@ -85,14 +86,16 @@
         <span class="text-sm uppercase">faq</span>
       </div>
     </div>
+    </header>
+    <main class="select-none">
     <!-- Carousel -->
-    <div class="py-4 mx-10 border-b-4">
+    <div class="py-4 border-b-4" x-data="{activeSlide: 1, slides: [1,2,3]}">
       <div
-        class="h-60 w-screen flex items-center overflow-x-auto overflow-y-hidden"
+        class="w-screen relative"
       >
-        <div>
+        <div x-show="activeSlide === slides[0]">
           <div
-            class="py-6 px-4 w-screen bg-cover rounded-3xl flex items-center justify-center bg-indigo-300"
+            class="py-6 px-4 w-full bg-cover rounded-3xl flex items-center justify-center bg-indigo-300"
           >
             <div>
               <p class="mb-4 capitalize font-extrabold text-xl">
@@ -129,7 +132,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div x-show="activeSlide === slides[1]">
           <div
             class="py-6 px-4 w-screen bg-cover rounded-3xl flex items-center justify-center bg-yellow-300"
           >
@@ -163,7 +166,7 @@
             </div>
           </div>
         </div>
-        <div>
+        <div x-show="activeSlide === slides[2]">
           <div
             class="py-6 px-4 w-screen bg-cover rounded-3xl flex items-center justify-center bg-green-300"
           >
@@ -196,6 +199,15 @@
             </div>
           </div>
         </div>
+        <button class="prev"><i class="bi bi-chevron-left absolute top-1/2 left-2 transform -translate-y-1/2 cursor-pointer 
+         p-2 transition transition-colors hover:bg-black hover:text-white rounded-full" @click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1"></i></button>
+        <button class="next"><i class="bi bi-chevron-right absolute top-1/2 transform -translate-y-1/2 right-2 cursor-pointer p-2 transition transition-colors hover:bg-black hover:text-white rounded-full" @click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1"></i></button>
+      </div>
+      <!-- Dots/circle -->
+      <div class="h-2 w-full flex items-center justify-center py-4">
+        <div class="w-2 h-2 rounded-full inline-block cursor-pointer" :class="{'bg-indigo-600' : activeSlide === slides[0], 'bg-black ': activeSlide !== slides[0]}" @click="activeSlide = slides[0]"></div>
+        <div class="w-2 h-2 rounded-full inline-block mx-2 cursor-pointer" :class="{'bg-indigo-600' : activeSlide === slides[1], 'bg-black' : activeSlide !== slides[1]}" @click="activeSlide = slides[1]"></div>
+        <div class="w-2 h-2 rounded-full inline-block cursor-pointer" :class="{'bg-indigo-600' : activeSlide === slides[2], 'bg-black' : activeSlide !== slides[2]}" @click="activeSlide = slides[2]"></div>
       </div>
     </div>
     <!-- Gallery -->
@@ -387,6 +399,8 @@
           <div class="h-3/4 bg-white w-full rounded-t-3xl border-0"></div>
           <div class="h-1/4 bg-gray-300 w-full border-0 capitalize font-bold text-lg flex items-center justify-center">blah blah</div>
         </div>
+        <button class=" absolute left-2 top-6 tranform -translate-y-1/2"><i class="bi bi-chevron-left"></i></button>
+        <button class=" absolute right-2 top-6 tranform -translate-y-1/2"><i class="bi bi-chevron-right"></i></button>
       </div>
       </div>
     </div>
@@ -447,7 +461,7 @@
       </div>
     </div>
     <!-- Footer -->
-    <div class="bg-gray-700 text-white p-16">
+    <footer class="bg-gray-700 text-white p-16">
       <div class="flex items-center justify-evenly mb-20">
         <div>
           <p class="uppercase text-lg font-bold mb-4">content</p>
@@ -487,6 +501,6 @@
           @2020 AAKAR “Healing is Not Linear”
         </p>
       </div>
-    </div>
+    </footer>
   </body>
 </html>
