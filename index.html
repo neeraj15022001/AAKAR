@@ -451,7 +451,7 @@
         keep your moods in check! we are hope to handle your thoughts.<br />select
         all that apply to your current mood.
       </p>
-      <div class="py-10">
+      <div class="py-10" x-data="{currentSelected: ''}">
         <div class="grid grid-cols-2 gap-10">
           <div class="mx-auto">
             <div
@@ -464,7 +464,7 @@
                 class="mr-4 transform scale-125"
               />
               <p class="capitalize mr-4">grumpy/irritated</p>
-              <input type="checkbox" name="mood" id="grumpy" />
+              <input type="checkbox" name="grumpy" id="grumpy" @change="currentSelected = $event.target.name" />
             </div>
           </div>
           <div class="mx-auto">
@@ -478,7 +478,7 @@
                 class="mr-4 transform scale-125"
               />
               <p class="capitalize mr-4">exhausted/tired</p>
-              <input type="checkbox" name="mood" id="exhausted" />
+              <input type="checkbox" name="exhausted" id="exhausted" @change="currentSelected = $event.target.name" />
             </div>
           </div>
           <div class="mx-auto">
@@ -492,7 +492,7 @@
                 class="mr-4 transform scale-125"
               />
               <p class="capitalize mr-4">dull/terrible</p>
-              <input type="checkbox" name="mood" id="dull" />
+              <input type="checkbox" name="dull" id="dull"  @change="currentSelected = $event.target.name" />
             </div>
           </div>
           <div class="mx-auto">
@@ -506,7 +506,7 @@
                 class="mr-4 transform scale-125"
               />
               <p class="capitalize mr-4">alright</p>
-              <input type="checkbox" name="mood" id="alright" />
+              <input type="checkbox" name="alright" id="alright"  @change="currentSelected = $event.target.name"/>
             </div>
           </div>
           <div class="mx-auto">
@@ -520,7 +520,7 @@
                 class="mr-4 transform scale-125"
               />
               <p class="capitalize mr-4">nice/good</p>
-              <input type="checkbox" name="mood" id="nice" />
+              <input type="checkbox" name="nice" id="nice"  @change="currentSelected = $event.target.name" />
             </div>
           </div>
           <div class="mx-auto">
@@ -534,13 +534,13 @@
                 class="mr-4 transform scale-125"
               />
               <p class="capitalize mr-4">awesome</p>
-              <input type="checkbox" name="mood" id="awesome" />
+              <input type="checkbox" name="awesome" id="awesome"  @change="currentSelected = $event.target.name" />
             </div>
           </div>
         </div>
         <div class="flex items-center justify-center py-10">
           <span class="capitalize">selected:</span>
-          <input type="text" class="border-b border-black" />
+          <input type="text" class="border-b border-black text-center" x-model="currentSelected" />
         </div>
       </div>
     </div>
