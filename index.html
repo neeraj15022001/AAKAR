@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4e47e1" />
+
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
@@ -13,6 +15,12 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
     <script src="//unpkg.com/alpinejs" defer></script>
+    <style>
+      #login-dialog::backdrop,#signup-dialog::backdrop, #doctors-dialog::backdrop, #other-dialog::backdrop {
+        background: rgba(0,0,0,0.8);
+        backdrop-filter: blur(8px);
+      }
+    </style>
     <title>Assignment 1</title>
   </head>
   <body>
@@ -44,7 +52,7 @@
         <i class="bi bi-phone-fill"></i>
         <span class="capitalize">download app</span>
       </div>
-      <div class="mr-5 text-sm">
+      <div class="mr-5 text-sm cursor-pointer" x-data @click="openModal">
         <i class="bi bi-person-circle"></i>
         <span class="capitalize">login/signup</span>
       </div>
@@ -88,6 +96,180 @@
     </div>
     </header>
     <main class="select-none">
+    <!-- Login Dialog -->
+    <dialog id="login-dialog" class="z-20 bg-indigo-700 rounded-3xl p-0">
+      <div class="bg-indigo-700 text-white flex items-stretch justify-center rounded-3xl">
+        <div class="h-auto py-10 px-32 rounded-l-3xl" style="box-shadow: 10px 0px 15px 5px rgba(0,0,0,0.5);">
+          <p class="uppercase text-center">login</p>
+          <div class="uppercase h-80 flex items-center justify-center text-3xl font-bold">aakar</div>
+        </div>
+        <div class="h-auto w-auto rounded-r-3xl">
+          <div class="flex item-center justify-end p-3 border-b-2 border-white" x-data @click="closeModal">
+            <i class="bi bi-x hover:bg-indigo-900 transition transition-colors py-1 px-2 rounded-full cursor-pointer"></i>
+          </div>
+          <div class="px-20 py-10">
+            <div class="flex items-center justify-center my-3">
+              <i class="bi bi-person-fill text-9xl"></i>
+            </div>
+            <form class="flex flex-col items-center justify-center">
+              <input type="text" placeholder="Login Id-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none">
+              <input type="password" placeholder="Password-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none">
+              <input type="submit" value="LOGIN" class="bg-indigo-900 border-2 rounded-full px-6 py-1 mb-3">
+            </form>
+            <div class="flex flex-col items-center justify-center">
+              <a href="#forgot" class="capitalize">forgot password?</a>
+              <span>Don't have an account? <a href="#signup" class="underline" x-data @click="openSignUpModal">Sign up</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <!-- SignUp Dialog -->
+    <dialog id="signup-dialog" class="z-20 bg-indigo-700 rounded-3xl p-0">
+      <div class="bg-indigo-700 text-white flex items-stretch justify-center rounded-3xl">
+        <div class="py-10 px-20 rounded-l-3xl flex items-center justify-center flex-col" style="box-shadow: 10px 0px 15px 5px rgba(0,0,0,0.5);">
+          <div class="uppercase flex items-center justify-center text-3xl font-bold mb-10">aakar</div>
+          <div>
+            <ul class="text-center">
+              <li class="capitalize text-black font-bold text-lg cursor-pointer">specialist registeration</li>
+              <li class="capitalize text-black font-bold text-lg cursor-pointer" x-data @click="openDoctorModal">doctors</li>
+              <li class="capitalize text-black font-bold text-lg cursor-pointer" x-data @click="openDoctorModal">counselor</li>
+              <li class="capitalize text-black font-bold text-lg cursor-pointer" x-data @click="openOtherDialog">yoga expert</li>
+              <li class="capitalize text-black font-bold text-lg cursor-pointer" x-data @click="openOtherDialog">dietitian</li>
+              <li class="capitalize text-black font-bold text-lg cursor-pointer" x-data @click="openOtherDialog">consultants</li>
+            </ul>
+          </div>
+        </div>
+        <div class="w-auto py-5 rounded-r-3xl">
+          <div class="flex item-center justify-between p-3 border-b-2 border-white" x-data @click="closeSignUpModal">
+            <p class="uppercase flex items-center justify-center text-center w-full">sign up</p>
+            <i class="bi bi-x hover:bg-indigo-900 transition transition-colors py-1 px-2 rounded-full cursor-pointer"></i>
+          </div>
+          <div class="flex items-center justify-center my-5">
+            <i class="bi bi-person-fill text-6xl"></i>
+          </div>
+          <div class="overflow-auto h-full">
+            <form class="flex flex-col items-center justify-center px-5 overflow-auto">
+              <input type="text" placeholder="Name*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+              <input type="email" placeholder="Email Id*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+              <div class="flex items-center justify-between w-full">
+                <input type="text" placeholder="Age*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none">
+                <input type="text" placeholder="Martial Status*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none">
+              </div>
+              <div class="flex items-center justify-between w-full">
+                <input type="text" placeholder="Gender*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none mr-5">
+                <input type="text" placeholder="Mob. Number*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none">
+              </div>
+              <input type="text" placeholder="Employment Status*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+              <input type="password" name="signuppassword" placeholder="Password*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+              <input type="submit" value="SIGNUP" class="bg-indigo-900 border-2 rounded-full px-6 py-1 mb-3">
+            </form>
+            <div class="flex flex-col items-center justify-center">
+              <a href="#forgot" class="capitalize">forgot password?</a>
+              <span>Don't have an account? <a href="#signup" class="underline" x-data @click="openLoginModal">Login</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <!-- Doctors/Consultant Dialog -->
+    <dialog  id="doctors-dialog" class="z-20 bg-indigo-700 rounded-3xl text-white">
+      <div>
+        <div class="flex items-center justify-evenly border-b-2 border-white py-2 mb-3">
+          <span class="uppercase text-xl font-extrabold">aakar</span>
+          <span class="uppercase font-semibold text-sm">sign up</span>
+          <span class="uppercase font-semibold text-sm">doctor/counselor</span>
+          <i class="bi bi-x hover:bg-indigo-900 transition transition-colors py-1 px-2 rounded-full cursor-pointer" x-data @click="closeDoctorModal"></i>
+        </div>
+        <div>
+          <form>
+            <div class="flex items-center justify-between py-4">
+              <div class="w-1/4 flex items-center justify-center flex-col">
+                <div class="border-2 border-white h-28 w-24 rounded-lg flex items-center justify-center text-7xl">
+                  <i class="bi bi-person-fill"></i>
+                </div>
+                <p class="text-center capitalize">upload photo</p>
+                <button class="bg-indigo-900 border-2 rounded-full px-6 py-1 text-sm">Choose</button>
+              </div>
+              <div class="flex flex-col items-center justify-center w-3/4 px-3">
+                <input type="text" name="name-field" placeholder="Name*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+                <input type="email" name="email-field" placeholder="Email Id*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+                <textarea name="work-field" placeholder="Work Address*:" cols="10" rows="3" class="bg-transparent border-2 rounded-xl px-2 mb-3 placeholder-white outline-none w-full"></textarea>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <input type="text" name="designation-field" placeholder="Designation*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full mr-2">
+              <input type="tel" name="maobile-field" placeholder="Mob No*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+            </div>
+            <div class="flex items-center justify-between">
+              <input type="text" name="degree-field" placeholder="Degree*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full mr-2">
+              <input type="text" name="registration-year" placeholder="Registration Year*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <input type="text" name="registration-number" placeholder="Registration Field*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+              <input type="text" name="registration-council" placeholder="Registration Council*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+              <input type="text" name="year-field" placeholder="Year of Experience*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="mr-2"><textarea name="aadhar" placeholder="ID Proof* (Aadhar)-" cols="30" rows="3" class="bg-transparent border-2 rounded-xl px-2 mb-3 placeholder-white outline-none w-full"></textarea></div>
+              <div><textarea name="visiting-card" placeholder="Visiting Card/ Clinic Photo-" cols="30" rows="3" class="bg-transparent border-2 rounded-xl px-2 mb-3 placeholder-white outline-none w-full"></textarea></div>
+            </div>
+            <div class="flex items-center justify-center"><input type="submit" value="SIGNUP" class="bg-indigo-900 border-2 rounded-full px-6 py-1 mb-3"></div>
+          </form>
+          <div class="text-center">
+            <span>Already Have an account? <a href="#login" class="underline" x-data @click="openModal">Login</a></span>
+          </div>
+        </div>
+      </div>
+    </dialog>
+    <!-- other Dialogs -->
+    <dialog  id="other-dialog" class="z-20 bg-indigo-700 rounded-3xl text-white">
+      <div>
+        <div class="flex items-center justify-evenly border-b-2 border-white py-2 mb-3">
+          <span class="uppercase text-xl font-extrabold">aakar</span>
+          <span class="uppercase font-semibold text-sm">sign up</span>
+          <span class="uppercase font-semibold text-sm">doctor/counselor</span>
+          <i class="bi bi-x hover:bg-indigo-900 transition transition-colors py-1 px-2 rounded-full cursor-pointer" x-data @click="closeOtherModal"></i>
+        </div>
+        <div>
+          <form>
+            <div class="flex items-center justify-between py-4">
+              <div class="w-1/4 flex items-center justify-center flex-col">
+                <div class="border-2 border-white h-28 w-24 rounded-lg flex items-center justify-center text-7xl">
+                  <i class="bi bi-person-fill"></i>
+                </div>
+                <p class="text-center capitalize">upload photo</p>
+                <button class="bg-indigo-900 border-2 rounded-full px-6 py-1 text-sm">Choose</button>
+              </div>
+              <div class="flex flex-col items-center justify-center w-3/4 px-3">
+                <input type="text" name="name-field" placeholder="Name*:" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+                <input type="email" name="email-field" placeholder="Email Id*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+                <textarea name="work-field" placeholder="Work Address*:" cols="10" rows="3" class="bg-transparent border-2 rounded-xl px-2 mb-3 placeholder-white outline-none w-full"></textarea>
+              </div>
+            </div>
+            <div class="flex items-center justify-between">
+              <input type="text" name="designation-field" placeholder="Designation*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full mr-2">
+              <input type="tel" name="maobile-field" placeholder="Mob No*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+            </div>
+            <div class="flex items-center justify-between">
+              <input type="text" name="registration-year" placeholder="Registration Year*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+              <input type="text" name="year-field" placeholder="Year of Experience*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+            </div>
+            <div class="flex flex-col items-center justify-center">
+              <input type="text" name="registration-number" placeholder="Registration Field*:-" class="bg-transparent border-2 rounded-full px-2 mb-3 placeholder-white outline-none w-full">
+            </div>
+            <div class="flex items-center justify-between">
+              <div class="mr-2"><textarea name="aadhar" placeholder="ID Proof* (Aadhar)-" cols="30" rows="3" class="bg-transparent border-2 rounded-xl px-2 mb-3 placeholder-white outline-none w-full"></textarea></div>
+              <div><textarea name="visiting-card" placeholder="Visiting Card/ Clinic Photo-" cols="30" rows="3" class="bg-transparent border-2 rounded-xl px-2 mb-3 placeholder-white outline-none w-full"></textarea></div>
+            </div>
+            <div class="flex items-center justify-center"><input type="submit" value="SIGNUP" class="bg-indigo-900 border-2 rounded-full px-6 py-1 mb-3"></div>
+          </form>
+          <div class="text-center">
+            <span>Already Have an account? <a href="#login" class="underline" x-data @click="openModal">Login</a></span>
+          </div>
+        </div>
+      </div>
+    </dialog>
     <!-- Carousel -->
     <div class="py-4 border-b-4" x-data="{activeSlide: 1, slides: [1,2,3]}">
       <div
@@ -502,5 +684,45 @@
         </p>
       </div>
     </footer>
+    <script>
+      function openModal() {
+        document.getElementById("signup-dialog").close()
+        document.getElementById("doctors-dialog").close()
+        document.getElementById("other-dialog").close()
+        document.getElementById('login-dialog').showModal()
+      }
+
+      function closeModal() {
+        document.getElementById('login-dialog').close()
+      }
+      function openSignUpModal() {
+        document.getElementById('login-dialog').close()
+        document.getElementById("signup-dialog").showModal()
+      }
+      
+      function closeSignUpModal() {
+        document.getElementById("signup-dialog").close()
+      }
+
+      function openLoginModal() {
+        document.getElementById("signup-dialog").close()
+        document.getElementById("login-dialog").showModal()
+      }
+      function openDoctorModal() {
+        document.getElementById("signup-dialog").close()
+        document.getElementById("doctors-dialog").showModal()
+      }
+      function closeDoctorModal() {
+        document.getElementById("doctors-dialog").close()
+      }
+
+    function openOtherDialog() {
+      document.getElementById("signup-dialog").close()
+      document.getElementById("other-dialog").showModal()
+    }
+    function closeOtherModal() {
+      document.getElementById("other-dialog").close()
+    }
+    </script>
   </body>
 </html>
